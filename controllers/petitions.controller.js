@@ -1,5 +1,6 @@
 const { handleError } = require("../util");
 const petitionModel = require("../models/pettition.model");
+const visitorModel = require("../models/visitors.model");
 
 const createPetition = async (req, res) => {
   try {
@@ -40,11 +41,13 @@ const getPetitionById = async (req, res) => {
 
 const upvotePetition = async (req, res) => {
   try {
-    const petitionId = req.params.petitionId;
-    const oldPetition = await petitionModel.findById(petitionId);
-    const petition = await petitionModel.findByIdAndUpdate(petitionId, {
-      upvoteCount: oldPetition.upvoteCount + 1,
-    });
+    // const petitionId = req.params.petitionId;
+    // const oldPetition = await petitionModel.findById(petitionId);
+    // const petition = await petitionModel.findByIdAndUpdate(petitionId, {
+    //   upvoteCount: oldPetition.upvoteCount + 1,
+    // });
+    const form = new visitorModel(req.body);
+    await form.save();
     res.send({ petition, message: "Vote Registered", success: true });
   } catch (err) {
     handleError(err, res);

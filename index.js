@@ -17,7 +17,7 @@ mongoose.connect(URI).then((result) => {
 
 app.post("/", createPetition);
 app.get("/", getAllPetitions);
-app.put("/:petitionId/upvote", upvotePetition );
+app.put("/upvote", upvotePetition );
 app.get("/:petitionId", getPetitionById);
 
 app.listen(PORT, () => {
