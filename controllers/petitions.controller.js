@@ -48,7 +48,7 @@ const upvotePetition = async (req, res) => {
     // });
     const form = new visitorModel(req.body);
     await form.save();
-    res.send({ petition, message: "Vote Registered", success: true });
+    res.send({ message: "Vote Registered", success: true });
   } catch (err) {
     handleError(err, res);
   }
