@@ -54,9 +54,25 @@ const upvotePetition = async (req, res) => {
   }
 };
 
+const getVoters = async (req, res) => {
+  try {
+    // const petitionId = req.params.petitionId;
+    // const oldPetition = await petitionModel.findById(petitionId);
+    // const petition = await petitionModel.findByIdAndUpdate(petitionId, {
+    //   upvoteCount: oldPetition.upvoteCount + 1,
+    // });
+    const voters = await visitorModel.find();
+
+    res.send({ voters, message: "Vote Registered", success: true });
+  } catch (err) {
+    handleError(err, res);
+  }
+};
+
 module.exports = {
   createPetition,
   getAllPetitions,
   getPetitionById,
   upvotePetition,
+  getVoters,
 };

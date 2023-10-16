@@ -4,7 +4,13 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const PORT = process.env.PORT_NUMBER;
 const URI = process.env.MONGO_URI;
-const { createPetition, getAllPetitions, getPetitionById, upvotePetition } = require("./controllers/petitions.controller");
+const {
+  createPetition,
+  getAllPetitions,
+  getPetitionById,
+  upvotePetition,
+  getVoters,
+} = require("./controllers/petitions.controller");
 const cors = require("cors");
 app.use(cors());
 
@@ -17,7 +23,8 @@ mongoose.connect(URI).then((result) => {
 
 app.post("/", createPetition);
 app.get("/", getAllPetitions);
-app.put("/upvote", upvotePetition );
+app.put("/upvote", upvotePetition);
+app.get("/voters", getVoters);
 app.get("/:petitionId", getPetitionById);
 
 app.listen(PORT, () => {
